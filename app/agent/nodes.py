@@ -39,7 +39,7 @@ def convert_to_images(state: QAState) -> dict:
 def _query_anthropic(images: list, question: str) -> str:
     import anthropic
 
-    client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+    client = anthropic.Anthropic(api_key=settings.require_api_key())
     content = []
     for img_bytes in images:
         encoded = base64.standard_b64encode(img_bytes).decode("utf-8")
@@ -61,7 +61,7 @@ def _query_anthropic(images: list, question: str) -> str:
 def _query_openai(images: list, question: str) -> str:
     from openai import OpenAI
 
-    client = OpenAI(api_key=settings.openai_api_key)
+    client = OpenAI(api_key=settings.require_api_key())
     image_blocks = [
         {
             "type": "image_url",

@@ -49,5 +49,5 @@ async def visual_qa(
     return QAResponse(
         answer=result["answer"],
         page_count=result["page_count"],
-        model=settings.claude_model,
+        model=settings.active_model,
     )
